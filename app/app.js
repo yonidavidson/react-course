@@ -15,6 +15,25 @@ const Recipes = ({ recipes }) => (
 
 const recipes = ['Waffles', 'Omelette'];
 
+class AddRecipe extends React.Component {
+  render() {
+    return (
+      <form onSubmit={ this.onSubmit.bind(this) }>
+        <input ref="title" type="text"/>
+        <button>Add</button>
+      </form>
+    );
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    this.props.addRecipe(this.refs.title.value);
+
+    this.refs.title.value = '';
+  }
+}
+
 class App extends React.Component {
   constructor() {
     super();
@@ -27,21 +46,14 @@ class App extends React.Component {
       <div>
         <h1>Recipes:</h1>
         <Recipes recipes={ this.state.recipes }/>
+        <AddRecipe addRecipe={ this.addRecipe.bind(this) } />
 
-        <form onSubmit={ this.onSubmit.bind(this) }>
-          <input ref="title" type="text"/>
-          <button>Add</button>
-        </form>
       </div>
     );
   }
 
-  onSubmit(e) {
-    e.preventDefault();
-
-    this.setState({ recipes: this.state.recipes.concat(this.refs.title.value) });
-
-    this.refs.title.value = '';
+  addRecipe(title) {
+    this.setState({ recipes: this.state.recipes.concat(title) });
   }
 }
 
