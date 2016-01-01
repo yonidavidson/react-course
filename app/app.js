@@ -4,9 +4,11 @@ import 'assets/stylesheets/main.scss';
 import { render } from 'react-dom';
 
 function App() {
-  return React.createElement('div', null,
-    React.createElement('h1', null, 'I am a component!'),
-    React.createElement('h2', null, 'I am a sub title!')
+  return (
+    <div>
+      <h1>I am a component!</h1>
+      <h2>I am a sub title</h2>
+    </div>
   );
 }
 
