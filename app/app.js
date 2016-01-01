@@ -8,6 +8,7 @@ import store from 'store/store';
 
 import Recipes from 'components/recipes';
 import AddRecipe from 'components/add-recipe';
+import { fetchRecipes } from 'actions/recipes';
 
 const App = ({ children }) => (
   <div>
@@ -22,6 +23,8 @@ const NotFound = () => (
     <Link to="/">Back home</Link>
   </div>
 );
+
+store.dispatch(fetchRecipes());
 
 render(
   <Provider store={ store }>

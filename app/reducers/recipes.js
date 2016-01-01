@@ -1,4 +1,4 @@
-import { ADD_RECIPE, TOGGLE_FAVORITE } from 'consts/action-types'
+import { ADD_RECIPE, TOGGLE_FAVORITE, SET_RECIPES } from 'consts/action-types'
 
 const recipesReducer = (recipes = [], action) => {
 
@@ -12,6 +12,9 @@ const recipesReducer = (recipes = [], action) => {
           ? recipe
           : Object.assign({}, recipe, { favorite: !recipe.favorite })
       );
+
+    case SET_RECIPES:
+      return action.payload.recipes;
   }
 
   return recipes;
