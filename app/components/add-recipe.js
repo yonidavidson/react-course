@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { Link, browserHistory } from 'react-router';
 import { addRecipe } from 'actions/recipes';
 
 class AddRecipe extends React.Component {
@@ -16,6 +17,7 @@ class AddRecipe extends React.Component {
         </div>
 
         <button>Add</button>
+        <Link to="/">Back</Link>
       </form>
     );
   }
@@ -28,8 +30,7 @@ class AddRecipe extends React.Component {
       this.refs.description
     );
 
-    this.refs.title.value = '';
-    this.refs.description.value = '';
+    browserHistory.push('/');
   }
 }
 
