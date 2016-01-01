@@ -6,7 +6,17 @@ import { render } from 'react-dom';
 import Recipes from 'components/recipes';
 import AddRecipe from 'components/add-recipe';
 
-const recipes = ['Waffles', 'Omelette'];
+const recipes = [
+  {
+    title: 'Waffles',
+    favorite: false
+  },
+  {
+
+    title: 'Omelette',
+    favorite: true
+  }
+];
 
 class App extends React.Component {
   constructor() {
@@ -26,7 +36,12 @@ class App extends React.Component {
   }
 
   addRecipe(title) {
-    this.setState({ recipes: this.state.recipes.concat(title) });
+    const newRecipe = {
+      title,
+      favorite: false
+    };
+
+    this.setState({ recipes: this.state.recipes.concat(newRecipe) });
   }
 }
 

@@ -1,9 +1,9 @@
-const Recipe = ({ recipe }) => (
-  <li>{ recipe }</li>
+const Recipe = ({ recipe: { favorite, title } }) => (
+  <li className={ favorite && 'favorite' }>{ title }</li>
 );
 
 Recipe.propTypes = {
-  recipe: React.PropTypes.string.isRequired
+  recipe: React.PropTypes.object.isRequired
 };
 
 export default Recipe;
