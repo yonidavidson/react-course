@@ -9,8 +9,7 @@ const Recipe = ({ recipe }) => (
 
 const Recipes = ({ recipes }) => (
   <ul>
-    <Recipe recipe={ recipes[0] } />
-    <Recipe recipe={ recipes[1] } />
+    { recipes.map(recipe => <Recipe key={ recipe } recipe={ recipe } /> )}
   </ul>
 );
 
