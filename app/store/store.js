@@ -1,5 +1,6 @@
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from 'reducers/root';
+import logMiddleware from 'middleware/log';
 
 const initialState = {
   recipes: [
@@ -17,4 +18,4 @@ const initialState = {
   ]
 };
 
-export default createStore(rootReducer, initialState);
+export default createStore(rootReducer, initialState, applyMiddleware(logMiddleware));
