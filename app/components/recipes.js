@@ -6,4 +6,8 @@ const Recipes = ({ recipes }) => (
   </ul>
 );
 
+Recipes.propTypes = {
+  recipes: React.PropTypes.array.isRequired
+};
+
 export default Recipes;
