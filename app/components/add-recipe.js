@@ -5,7 +5,16 @@ class AddRecipe extends React.Component {
   render() {
     return (
       <form onSubmit={ this.onSubmit.bind(this) }>
-        <input ref="title" type="text"/>
+        <div>
+          <div>Title</div>
+          <input ref="title" type="text"/>
+        </div>
+
+        <div>
+          <div>Description</div>
+          <textarea ref="description" type="text"/>
+        </div>
+
         <button>Add</button>
       </form>
     );
@@ -14,9 +23,13 @@ class AddRecipe extends React.Component {
   onSubmit(e) {
     e.preventDefault();
 
-    this.props.addRecipe(this.refs.title.value);
+    this.props.addRecipe(
+      this.refs.title.value,
+      this.refs.description
+    );
 
     this.refs.title.value = '';
+    this.refs.description.value = '';
   }
 }
 
