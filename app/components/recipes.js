@@ -1,3 +1,4 @@
+import { connect } from 'react-redux';
 import Recipe from './recipe';
 
 const Recipes = ({ recipes, toggleFavorite }) => (
@@ -18,4 +19,12 @@ Recipes.propTypes = {
   toggleFavorite: React.PropTypes.func.isRequired
 };
 
-export default Recipes;
+const mapStateToProps = (state) => ({
+  recipes: state.recipes
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  toggleFavorite: (title) => dispatch({ type: 'TOGGLE_FAVORITE', title })
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Recipes);

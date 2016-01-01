@@ -2,59 +2,62 @@ import 'normalize.css/normalize.css';
 import 'assets/stylesheets/main.scss';
 
 import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
 import Recipes from 'components/recipes';
 import AddRecipe from 'components/add-recipe';
 
-const recipes = [
-  {
-    title: 'Waffles',
-    favorite: false
-  },
-  {
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'ADD_RECIPE':
+      const newRecipe = {
+        title: action.title,
+        favorite: false
+      };
 
-    title: 'Omelette',
-    favorite: true
-  }
-];
+      return Object.assign({}, state, { recipes: state.recipes.concat(newRecipe) });
 
-class App extends React.Component {
-  constructor() {
-    super();
+    case 'TOGGLE_FAVORITE':
+      const recipes = state.recipes.map(recipe =>
+        recipe.title !== action.title
+          ? recipe
+          : Object.assign({}, recipe, { favorite: !recipe.favorite })
+        );
 
-    this.state = { recipes };
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Recipes:</h1>
-
-        <Recipes recipes={ this.state.recipes }
-                 toggleFavorite={ this.toggleFavorite.bind(this) } />
-
-        <AddRecipe addRecipe={ this.addRecipe.bind(this) } />
-      </div>
-    );
+      return Object.assign({}, state, { recipes });
   }
 
-  addRecipe(title) {
-    const newRecipe = {
-      title,
+  return state;
+};
+
+const initialState = {
+  recipes: [
+    {
+      title: 'Waffles',
       favorite: false
-    };
+    },
+    {
 
-    this.setState({ recipes: this.state.recipes.concat(newRecipe) });
-  }
+      title: 'Omelette',
+      favorite: true
+    }
+  ]
+};
 
-  toggleFavorite(title) {
-    const recipe = this.state.recipes.find(recipe => recipe.title === title);
-    recipe.favorite = !recipe.favorite;
-    this.forceUpdate();
-  }
-}
+const store = createStore(reducer, initialState);
+
+const App = () => (
+  <div>
+    <h1>Recipes:</h1>
+    <Recipes />
+    <AddRecipe />
+  </div>
+);
 
 render(
-  React.createElement(App),
+  <Provider store={ store }>
+    <App />
+  </Provider>,
   document.getElementById('app')
 );
