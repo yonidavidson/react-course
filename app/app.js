@@ -16,11 +16,24 @@ const Recipes = ({ recipes }) => (
 const recipes = ['Waffles', 'Omelette'];
 
 class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      recipes: recipes
+    };
+
+    setTimeout(
+      () => this.setState({recipes: recipes.concat('Shakshuka')}),
+      1000
+    );
+  }
+
   render() {
     return (
       <div>
         <h1>Recipes:</h1>
-        <Recipes recipes={ recipes }/>
+        <Recipes recipes={ this.state.recipes }/>
       </div>
     );
   }
