@@ -3,36 +3,10 @@ import 'assets/stylesheets/main.scss';
 
 import { render } from 'react-dom';
 
-const Recipe = ({ recipe }) => (
-  <li>{ recipe }</li>
-);
-
-const Recipes = ({ recipes }) => (
-  <ul>
-    { recipes.map(recipe => <Recipe key={ recipe } recipe={ recipe } /> )}
-  </ul>
-);
+import Recipes from 'components/recipes';
+import AddRecipe from 'components/add-recipe';
 
 const recipes = ['Waffles', 'Omelette'];
-
-class AddRecipe extends React.Component {
-  render() {
-    return (
-      <form onSubmit={ this.onSubmit.bind(this) }>
-        <input ref="title" type="text"/>
-        <button>Add</button>
-      </form>
-    );
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-
-    this.props.addRecipe(this.refs.title.value);
-
-    this.refs.title.value = '';
-  }
-}
 
 class App extends React.Component {
   constructor() {
@@ -47,7 +21,6 @@ class App extends React.Component {
         <h1>Recipes:</h1>
         <Recipes recipes={ this.state.recipes }/>
         <AddRecipe addRecipe={ this.addRecipe.bind(this) } />
-
       </div>
     );
   }
