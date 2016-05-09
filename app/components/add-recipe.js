@@ -27,7 +27,7 @@ class AddRecipe extends React.Component {
 
     this.props.addRecipe(
       this.refs.title.value,
-      this.refs.description
+      this.refs.description.value
     );
 
     browserHistory.push('/');
