@@ -1,21 +1,22 @@
-import { FETCH_RECIPES } from 'consts/action-types';
-import { setRecipes } from 'actions/recipes';
+import { API } from 'consts/action-types';
 
-const RECIPES_URL = 'https://s3.amazonaws.com/500tech-shared/recipes.json';
+const RECIPES_URL = 'https://s3.amazonaws.com/500tech-shared/';
 
-const makeRequest = (url, success) => fetch(url)
+const handleError = error => console.log(`Error accessing server: ${ error }`);
+
+const makeRequest = (url, success) => fetch(RECIPES_URL + url)
   .then(response => {
     if (response.status !== 200) {
-      console.log(`Error fetching recipes: ${ response.status }`);
+      handleError(response.status);
     } else {
       response.json().then(success)
     }
   })
-  .catch(err => console.log(`Error fetching recipes: ${ err }`));
+  .catch(handleError);
 
-const apiMiddleware = store => next => action => {
-  if (action.type === FETCH_RECIPES) {
-    makeRequest(RECIPES_URL, (data) => store.dispatch(setRecipes(data)));
+const apiMiddleware = ({ dispatch }) => next => action => {
+  if (action.type === API) {
+    makeRequest(action.url, (data) => dispatch(action.success(data)));
   }
 
   next(action);
