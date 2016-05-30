@@ -50,12 +50,6 @@ const config = {
       // https://github.com/reactjs/redux/issues/1029
       'process.env.NODE_ENV': JSON.stringify(appEnv)
     }),
-
-    // Generate the bundle file
-    new webpack.optimize.CommonsChunkPlugin(
-      /* chunkName: */ 'vendor',
-      /* filename: */ 'vendor.[hash].js'
-    )
   ],
 
   // Enable loading modules relatively (without the ../../ prefix)
@@ -150,6 +144,15 @@ if (appEnv === 'production') {
   config.plugins.push(
     // Remove build related folders
     new CleanPlugin(['dist'])
+  );
+}
+
+if (appEnv !== 'test') {
+  config.plugins.push(
+    new webpack.optimize.CommonsChunkPlugin(
+      /* chunkName: */ 'vendor',
+      /* filename: */ 'vendor.[hash].js'
+    )
   );
 }
 
