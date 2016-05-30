@@ -13,7 +13,7 @@ import { fetchRecipes } from 'actions/recipes';
 const App = ({ children }) => (
   <div>
     <h1>Recipes app:</h1>
-    { children }
+    { children || <Recipes /> }
   </div>
 );
 
@@ -29,9 +29,8 @@ store.dispatch(fetchRecipes());
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
-      <Route components={ App }>
-        <Route path="/" component={ Recipes } />
-        <Route path="/add" component={ AddRecipe } />
+      <Route path="/" components={ App }>
+        <Route path="add" component={ AddRecipe } />
       </Route>
       <Route path="*" component={ NotFound } />
     </Router>
