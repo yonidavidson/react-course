@@ -3,15 +3,26 @@ import 'assets/stylesheets/main.scss';
 
 import { render } from 'react-dom';
 
-const Math = ({x,y}) => (<h2>{x+y}</h2>) // Destructering from props
-
-const App = () => (
- <div>
-  <h1>I am a component</h1> // Main component is between tags
-  <Math x={1} y={2}></Math> //Propes are part of first tag 
-  <Math x={2} y={3}></Math> 
-  </div>
+const Header = ({text}) => (<h1>{text}</h1>)
+const Recipe = ({name}) => (<li>{name}</li>)
+const Recipes = ({recipes}) => (
+	<ul>
+	{
+	recipes.map(recipe => <Recipe name={recipe} />)
+	}
+	</ul>
 );
+const App = () => {
+const recipes = ['Waffels','Omelette','juice']
+return(
+	<div>
+	 <div>
+	 	<Header text="Recipes" />
+	 	<Recipes recipes={recipes}/>	
+	 </div>	
+	</div>
+)
+}
 
 render(
   React.createElement(App),
