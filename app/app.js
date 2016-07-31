@@ -6,7 +6,10 @@ import { render } from 'react-dom';
 import Recipes from 'components/recipes';
 import AddRecipe from 'components/add-recipe';
 
-const recipes = ['Waffles', 'Omelette'];
+const recipes = [
+{title:'Waffles',favorite:false},
+{title:'Omelette',favorite:false}
+];
 
 class App extends React.Component {
   constructor() {
