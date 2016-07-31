@@ -7,7 +7,7 @@ import Recipes from 'components/recipes';
 import AddRecipe from 'components/add-recipe';
 
 const recipes = [
-{title:'Waffles',favorite:false},
+{title:'Waffles',favorite:true},
 {title:'Omelette',favorite:false}
 ];
 

@@ -1,5 +1,5 @@
 const Recipe = ({ recipe }) => (
-  <li>{ recipe.title }</li>
+	<li className={recipe.favorite ?'favorite' :''}>{ recipe.title }</li>
 );
 
 Recipe.propTypes = {
