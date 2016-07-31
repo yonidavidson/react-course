@@ -4,7 +4,14 @@ import 'assets/stylesheets/main.scss';
 import { render } from 'react-dom';
 
 const Header = ({text}) => (<h1>{text}</h1>)
-const Recipe = ({name}) => (<li>{name}</li>)
+class Recipe extends React.Component {
+	render(){
+		return(
+			<li>{this.props.name}</li>
+		)
+	}
+}
+
 const Recipes = ({recipes}) => (
 	<ul>
 	{
