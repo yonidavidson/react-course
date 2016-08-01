@@ -21,7 +21,26 @@ const initialState = {
   ]
 };
 
-const store = createStore(x => x, initialState);
+const reducer = (state, action) => {
+  console.log(action);
+
+  switch (action.type) {
+    case 'TOGGLE':
+      const newRecipes = state.recipes.map(recipe =>
+        recipe.title !== action.title
+          ? recipe
+          : Object.assign({}, recipe, { favorite: !recipe.favorite }));
+
+      return Object.assign({}, state, {
+        recipes: newRecipes
+      });
+  }
+  return state;
+};
+
+const store = createStore(reducer, initialState);
+
+window.store = store;
 
 const App = () => (
   <div>
