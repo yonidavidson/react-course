@@ -2,59 +2,40 @@ import 'normalize.css/normalize.css';
 import 'assets/stylesheets/main.scss';
 
 import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
 import Recipes from 'components/recipes';
 import AddRecipe from 'components/add-recipe';
 
-const recipes = [
-  {
-    title: 'Waffles',
-    favorite: false
-  },
-  {
-
-    title: 'Omelette',
-    favorite: true
-  }
-];
-
-class App extends React.Component {
-  constructor() {
-    super();
-
-    this.state = { recipes };
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Recipes:</h1>
-
-        <Recipes recipes={ this.state.recipes }
-                 toggleFavorite={ this.toggleFavorite.bind(this) } />
-
-        <AddRecipe addRecipe={ this.addRecipe.bind(this) } />
-      </div>
-    );
-  }
-
-  addRecipe(title) {
-    const newRecipe = {
-      title,
+const initialState = {
+  recipes: [
+    {
+      title: 'Waffles',
       favorite: false
-    };
+    },
+    {
+      title: 'Omelette',
+      favorite: true
+    }
+  ]
+};
 
-    this.setState({ recipes: this.state.recipes.concat(newRecipe) });
-  }
+const store = createStore(x => x, initialState);
 
-  toggleFavorite(title) {
-    const recipe = this.state.recipes.find(recipe => recipe.title === title);
-    recipe.favorite = !recipe.favorite;
-    this.forceUpdate();
-  }
-}
+const App = () => (
+  <div>
+    <h1>Recipes:</h1>
+
+    <Recipes />
+
+    <AddRecipe />
+  </div>
+);
 
 render(
-  React.createElement(App),
+  <Provider store={ store }>
+    <App />
+  </Provider>,
   document.getElementById('app')
 );
