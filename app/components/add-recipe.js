@@ -1,3 +1,4 @@
+import { connect } from 'react-redux'
 class AddRecipe extends React.Component {
   render() {
     return (
@@ -21,4 +22,14 @@ AddRecipe.propTypes = {
   addRecipe: React.PropTypes.func.isRequired
 };
 
-export default AddRecipe;
+//connecting
+const mapStateToProps = (state) => ({
+ // addRecipe: {}
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  addRecipe: (title) => dispatch({type:"UPDATE_RECIPE", title})
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddRecipe);
