@@ -8,6 +8,7 @@ import store from 'store/store';
 
 import Recipes from 'components/recipes';
 import AddRecipe from 'components/add-recipe';
+import Description from 'components/recipe-description'
 
 const App = ({ children }) => (
   <div>
@@ -23,11 +24,13 @@ const NotFound = () => (
   </div>
 );
 
+
 render(
   <Provider store={ store }>
     <Router history={ browserHistory }>
       <Route path="/" components={ App }>
         <Route path="add" component={ AddRecipe } />
+        <Route path=":id" component={Description} />
       </Route>
       <Route path="*" component={ NotFound } />
     </Router>
