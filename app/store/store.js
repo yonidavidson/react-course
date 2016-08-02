@@ -5,12 +5,14 @@ const initialState = {
   recipes: [
     {
       title: 'Waffles',
-      favorite: false
+      favorite: false,
+      description:'Best waffels recipe'
     },
     {
 
       title: 'Omelette',
-      favorite: true
+      favorite: true,
+      description:'Best Omelette recipe'
     }
   ]
 };

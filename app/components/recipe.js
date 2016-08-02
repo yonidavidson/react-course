@@ -1,7 +1,7 @@
-const Recipe = ({ recipe: { favorite, title }, toggleFavorite }) => (
+const Recipe = ({ recipe: { favorite, title, description }, toggleFavorite }) => (
   <li className={ favorite && 'favorite' }
       onClick={ () => toggleFavorite(title) }>
-    { title }
+    { title } ({description})
   </li>
 );
 
