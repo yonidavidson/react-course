@@ -8,7 +8,7 @@ import store from 'store/store';
 
 import Recipes from 'components/recipes';
 import AddRecipe from 'components/add-recipe';
-import Description from 'components/recipe-description'
+import Detail from 'components/recipe-details'
 
 const App = ({ children }) => (
   <div>
@@ -30,7 +30,7 @@ render(
     <Router history={ browserHistory }>
       <Route path="/" components={ App }>
         <Route path="add" component={ AddRecipe } />
-        <Route path=":id" component={Description} />
+        <Route path=":id" component={Detail} />
       </Route>
       <Route path="*" component={ NotFound } />
     </Router>
