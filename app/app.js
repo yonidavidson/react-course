@@ -16,13 +16,15 @@ const  initialState = {
 }
 
 function reducer(state,action){
+  let newRecipes = {};
   switch (action.type){
     case "TOGGLE":
-      const newRecipes = state.recipes.map(recipe => 
+        newRecipes = state.recipes.map(recipe => 
         recipe.title===action.title? Object.assign({},recipe,{favorite:(!recipe.favorite)}):recipe)
         return Object.assign({},state,{recipes:newRecipes})
     case "UPDATE_RECIPE":
-        console.log("UPDATE_RECIPE")
+        newRecipes = state.recipes.concat({title:action.title,favorite:false})
+        return Object.assign({},state,{recipes:newRecipes})
     default:
       return state;
   }
