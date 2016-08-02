@@ -16,7 +16,7 @@ class AddRecipe extends React.Component {
   onSubmit(e) {
     e.preventDefault();
 
-    this.props.addRecipe(this.refs.title.value);
+    this.props.addRecipe(this.refs.title.value, this.refs.description.value);
 
     this.refs.title.value = '';
     this.refs.description.value = '';

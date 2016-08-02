@@ -6,7 +6,8 @@ const reducer = (state, action) => {
     case ADD_RECIPE:
       const newRecipe = {
         title: action.title,
-        favorite: false
+        favorite: false,
+        description: action.description
       };
 
       return Object.assign({}, state, {
